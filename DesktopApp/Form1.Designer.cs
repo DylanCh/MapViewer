@@ -31,10 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showToolbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -56,14 +59,22 @@
             this.latitudeGroup = new System.Windows.Forms.GroupBox();
             this.longitudeGroup = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showToolbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapTab = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.fromTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.toTextbox = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.latitudeGroup.SuspendLayout();
             this.longitudeGroup.SuspendLayout();
+            this.mapTab.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -87,10 +98,17 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // importFromFileToolStripMenuItem
+            // 
+            this.importFromFileToolStripMenuItem.Name = "importFromFileToolStripMenuItem";
+            this.importFromFileToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.importFromFileToolStripMenuItem.Text = "Import From file";
+            this.importFromFileToolStripMenuItem.Click += new System.EventHandler(this.importFromFileToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitClicked);
             // 
@@ -106,16 +124,33 @@
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyText);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteText);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolbarToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // showToolbarToolStripMenuItem
+            // 
+            this.showToolbarToolStripMenuItem.Checked = true;
+            this.showToolbarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showToolbarToolStripMenuItem.Name = "showToolbarToolStripMenuItem";
+            this.showToolbarToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.showToolbarToolStripMenuItem.Text = "Hide Toolbar";
+            this.showToolbarToolStripMenuItem.Click += new System.EventHandler(this.showToolbarToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -159,7 +194,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 49);
+            this.label2.Location = new System.Drawing.Point(38, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 13);
             this.label2.TabIndex = 3;
@@ -167,14 +202,14 @@
             // 
             // addressTextBox
             // 
-            this.addressTextBox.Location = new System.Drawing.Point(118, 104);
+            this.addressTextBox.Location = new System.Drawing.Point(196, 78);
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(329, 20);
             this.addressTextBox.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 331);
+            this.button1.Location = new System.Drawing.Point(41, 302);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -184,7 +219,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(115, 331);
+            this.button2.Location = new System.Drawing.Point(147, 302);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
@@ -227,7 +262,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(115, 133);
+            this.label4.Location = new System.Drawing.Point(193, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 11;
@@ -292,7 +327,7 @@
             // 
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Location = new System.Drawing.Point(9, 79);
+            this.groupBox1.Location = new System.Drawing.Point(41, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(100, 186);
             this.groupBox1.TabIndex = 17;
@@ -304,7 +339,7 @@
             this.latitudeGroup.Controls.Add(this.latitudeTextBox);
             this.latitudeGroup.Controls.Add(this.latitudeN);
             this.latitudeGroup.Controls.Add(this.latitudeS);
-            this.latitudeGroup.Location = new System.Drawing.Point(118, 133);
+            this.latitudeGroup.Location = new System.Drawing.Point(196, 107);
             this.latitudeGroup.Name = "latitudeGroup";
             this.latitudeGroup.Size = new System.Drawing.Size(362, 54);
             this.latitudeGroup.TabIndex = 18;
@@ -316,7 +351,7 @@
             this.longitudeGroup.Controls.Add(this.longitudeTextBox);
             this.longitudeGroup.Controls.Add(this.longitudeE);
             this.longitudeGroup.Controls.Add(this.longitudeW);
-            this.longitudeGroup.Location = new System.Drawing.Point(118, 203);
+            this.longitudeGroup.Location = new System.Drawing.Point(196, 177);
             this.longitudeGroup.Name = "longitudeGroup";
             this.longitudeGroup.Size = new System.Drawing.Size(362, 62);
             this.longitudeGroup.TabIndex = 19;
@@ -326,50 +361,104 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(121, 279);
+            this.label3.Location = new System.Drawing.Point(199, 253);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(264, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Please enter latitude and longtitude in the decimal form";
             // 
-            // viewToolStripMenuItem
+            // mapTab
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showToolbarToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.mapTab.Controls.Add(this.tabPage1);
+            this.mapTab.Controls.Add(this.tabPage2);
+            this.mapTab.Location = new System.Drawing.Point(12, 52);
+            this.mapTab.Name = "mapTab";
+            this.mapTab.SelectedIndex = 0;
+            this.mapTab.Size = new System.Drawing.Size(600, 385);
+            this.mapTab.TabIndex = 20;
             // 
-            // showToolbarToolStripMenuItem
+            // tabPage1
             // 
-            this.showToolbarToolStripMenuItem.Checked = true;
-            this.showToolbarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showToolbarToolStripMenuItem.Name = "showToolbarToolStripMenuItem";
-            this.showToolbarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.showToolbarToolStripMenuItem.Text = "Hide Toolbar";
-            this.showToolbarToolStripMenuItem.Click += new System.EventHandler(this.showToolbarToolStripMenuItem_Click);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.addressTextBox);
+            this.tabPage1.Controls.Add(this.longitudeGroup);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.latitudeGroup);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(592, 359);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // importFromFileToolStripMenuItem
+            // tabPage2
             // 
-            this.importFromFileToolStripMenuItem.Name = "importFromFileToolStripMenuItem";
-            this.importFromFileToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.importFromFileToolStripMenuItem.Text = "Import From file";
-            this.importFromFileToolStripMenuItem.Click += new System.EventHandler(this.importFromFileToolStripMenuItem_Click);
+            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.toTextbox);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.fromTextBox);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(592, 359);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(36, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "From:";
+            // 
+            // fromTextBox
+            // 
+            this.fromTextBox.Location = new System.Drawing.Point(76, 44);
+            this.fromTextBox.Name = "fromTextBox";
+            this.fromTextBox.Size = new System.Drawing.Size(349, 20);
+            this.fromTextBox.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(39, 81);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "To:";
+            // 
+            // toTextbox
+            // 
+            this.toTextbox.Location = new System.Drawing.Point(76, 81);
+            this.toTextbox.Name = "toTextbox";
+            this.toTextbox.Size = new System.Drawing.Size(349, 20);
+            this.toTextbox.TabIndex = 3;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(76, 128);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Go";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 449);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.longitudeGroup);
-            this.Controls.Add(this.latitudeGroup);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.addressTextBox);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.mapTab);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -386,6 +475,11 @@
             this.latitudeGroup.PerformLayout();
             this.longitudeGroup.ResumeLayout(false);
             this.longitudeGroup.PerformLayout();
+            this.mapTab.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,6 +517,14 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showToolbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importFromFileToolStripMenuItem;
+        private System.Windows.Forms.TabControl mapTab;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox toTextbox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox fromTextBox;
+        private System.Windows.Forms.Label label5;
     }
 }
 

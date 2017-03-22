@@ -21,6 +21,9 @@ namespace DesktopApp
         {
             InitializeComponent();
 
+            tabPage1.Text = "Map Viewer";
+            tabPage2.Text = "Trip Planner";
+
             showToolbarToolStripMenuItem.Checked = false;
 
             try {
@@ -197,6 +200,37 @@ namespace DesktopApp
 
             }
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string url = mapRoot + "/maps/dir/";
+            string[] urlParameter;
+
+            urlParameter= fromTextBox.Text.Split(new char[0]);
+            string last = urlParameter.Last();
+
+            foreach (string s in urlParameter) {
+                if (s.Equals(last))
+                {
+                    url = url + s + "/";
+                }
+                else url = url + s + "+";
+            }
+
+            Array.Clear(urlParameter,0,urlParameter.Length); // clear the array for the second part of parameters
+            urlParameter = toTextbox.Text.Split(new char[0]);
+            last = urlParameter.Last();
+
+            foreach (string s1 in urlParameter) {
+                if (s1.Equals(last))
+                {
+                    url = url + s1;
+                }
+                else url = url + s1 + "+";
+            }
+
+            Process.Start(new ProcessStartInfo(url));
         }
     }
 }
